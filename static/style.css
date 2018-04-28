@@ -1,14 +1,21 @@
-.map {
-    height: 100%;
+.map{
+  height: 100%;
 }
 
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+html,body{
+  height:100%;
+  margin: 0;
+  padding: 0;
 }
 
 h1{
+  text-align: center;
+  padding: 30px;
+  font-size: 50px;
+  font-style: italic;
+}
+
+h2{
   text-align: center;
 }
 
@@ -16,7 +23,22 @@ h1{
   text-align: center;
 }
 
+.flex-container , .fax-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+
 .pic{
   height: 200px;
   width: 150px;
+  margin-left: 85px;
+  margin-right: 65px;
+}
+
+.name{
+  margin-left: 140px;
+  margin-right: 120px;
 }
