@@ -246,6 +246,7 @@ const map_style = [
   }
 ];
 
+
 function initMap() {
   const map = new google.maps.Map(document.querySelector('#map'), {
     zoom: 12,
@@ -257,15 +258,53 @@ function initMap() {
     styles: map_style
   });
   
-  const infoWindow = new google.maps.InfoWindow();
-  let hotspotDataFeatures = [];
-  map.data.loadGeoJson('/data/wifi-hotspots');
+  	const infoWindow = new google.maps.InfoWindow();
+    let hotspotDataFeatures = [];
+    
+    //Load GeoJSON data for our hotspots. 
+    
+    map.data.loadGeoJson('/data/wifi-hotspots');
+  // Styling our map to customize what we see by feature. If the item is indoor, it is green. Otherwise, it is red.
+  map.data.setStyle(feature => {
+    const inOut = feature.getProperty('location_t');
+    
+    if (inOut === 'Indoor') {
+      return {
+          fillColor: '#59EC60',
+          strokeColor: '#59EC60',
+          fillOpacity: 1.0,  
+      };
+    }
+	
+	else if(inOut === 'Outdoor')
+    return {
+      fillColor: '#EC7D59',
+      strokeColor: '#EC7D59',
+      fillOpacity: 1.0,
+    };
+  });
+  
+  map.data.addListener('click', ev => {
+    const f = ev.feature;
+    const hotspotName = f.getProperty('ssid');
+    
+    
+    
+    infoWindow.setContent(`<b> Hotspot name: ${hotspotName} </b><br/>`);
+    infoWindow.setPosition(f.getGeometry().get());
+    infoWindow.setOptions({
+      pixelOffset: new google.maps.Size(0, -30)
+    });
+    infoWindow.open(map);
+  });
+  
   
   google.maps.event.addListener(map, 'idle', () => {
     const sw = map.getBounds().getSouthWest();
     const ne = map.getBounds().getNorthEast();
+    const zm = map.getZoom();
     map.data.loadGeoJson(
-      `/data/wifi-hotspots?viewport=${sw.lat()},${sw.lng()}|${ne.lat()},${ne.lng()}`,
+      `/data/wifi-hotspots?viewport=${sw.lat()},${sw.lng()}|${ne.lat()},${ne.lng()}&zoom=${zm}`,
       null,
       features => {
         hotspotDataFeatures.forEach(dataFeature => {
