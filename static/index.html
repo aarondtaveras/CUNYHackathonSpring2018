@@ -3,28 +3,25 @@
 
 <head>
   <meta charset="utf-8"/>
-  <link rel="stylesheet" type="text/css" href="hack.css">
+  <link rel="stylesheet" type="text/css" href="style.css"> 
 </head>
 
 <body>
   <div>
-    <nav class="navbar navbar-light navbar-clean">
-      <div class="container">
-
+      
         <h1> Free Wifi Hotspot Locator </h1>
-
         <!-- insert map -->
-
-        <div class="google maps"> </div>
+        <div id="map" style = "width:400px;height:400px"> </div>
         
-        <script async defer
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgqJiMBSNKzn4oGdUh33sTAsDy5gj5j74&callback=initMap">
-		</script>
+    	<script src="app.js"></script>
+    	
+    	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgqJiMBSNKzn4oGdUh33sTAsDy5gj5j74&callback=initMap">
+    	</script>
 
+	</div>
 <footer>
 
 </footer>
-
 
 
 </body>
