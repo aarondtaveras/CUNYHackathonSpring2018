@@ -13,7 +13,7 @@ body{
   position: relative;
   height: 400px;
   overflow: hidden;
-  margin: 0 auto;
+  margin: 0 auto 60px;
   z-index: -1;
 }
 
@@ -24,7 +24,7 @@ body{
   -webkit-animation: move 20s infinite linear;
   -moz-animation: move 20s infinite linear;
   -ms-animation: move 20s infinite linear;
-  z-index: 1;
+  z-index: -1;
 }
 
 #clouds2 {
@@ -32,7 +32,7 @@ body{
   -webkit-animation: backup 14s infinite linear;
   -moz-animation: backup 14s infinite linear;
   -ms-animation: backup 14s infinite linear;
-  z-index: 2;
+  z-index: -2;
 }
 
 .cloud1, .cloud2, .cloud3 {
@@ -238,15 +238,15 @@ h2{
 
 .description{
   float: left;
-  margin-left: 7%;
+  margin-left: 5%;
   margin-top: 10%;
   position: absolute;
+  bottom:50%;
 }
 
-#map{
-  height: 100%;
-  margin-left: auto;
-  margin-right: auto;
+#map{	
+  position: relative;
+  margin-left: 14%;
 }
 
 .creators{
@@ -260,9 +260,6 @@ h2{
   justify-content: center;
 }
 
-.creators{
-  bottom:5%;
-}
 
 .pic{
   height: 200px;
