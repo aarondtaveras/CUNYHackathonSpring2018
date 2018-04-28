@@ -7,3 +7,16 @@ html, body {
     margin: 0;
     padding: 0;
 }
+
+h1{
+  text-align: center;
+}
+
+.description{
+  text-align: center;
+}
+
+.pic{
+  height: 200px;
+  width: 150px;
+}
