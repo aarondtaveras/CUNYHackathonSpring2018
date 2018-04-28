@@ -248,16 +248,27 @@ const map_style = [
 
 
 function initMap() {
+	
+  var pos;
   const map = new google.maps.Map(document.querySelector('#map'), {
-    zoom: 12,
+    zoom: 18,
     center: {
       // New York City
       lat: 40.7305,
       lng: -73.9091
     },
     styles: map_style
+    
   });
-  
+  	
+     
+ 	if(navigator.geolocation) { // test for presence of location feature
+  navigator.geolocation.getCurrentPosition(function(position) {
+    pos = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+    map.setCenter(pos);
+  });
+}
+ 
   	const infoWindow = new google.maps.InfoWindow();
     let hotspotDataFeatures = [];
     
@@ -287,10 +298,13 @@ function initMap() {
   map.data.addListener('click', ev => {
     const f = ev.feature;
     const hotspotName = f.getProperty('ssid');
+    const hotspotProvider = f.getProperty('provider');
+    const hotspotLoc = f.getProperty('location');
     
     
     
-    infoWindow.setContent(`<b> Hotspot name: ${hotspotName} </b><br/>`);
+    infoWindow.setContent(`<b> SSID: ${hotspotName} </b><br/>
+    <b> Location: ${hotspotLoc} </b> Provider: ${hotspotProvider}`);
     infoWindow.setPosition(f.getGeometry().get());
     infoWindow.setOptions({
       pixelOffset: new google.maps.Size(0, -30)
@@ -314,5 +328,6 @@ function initMap() {
       }
     );
   });
-}
+  
 
+}
