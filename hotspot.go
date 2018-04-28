@@ -29,10 +29,7 @@ func cacheGeoJSON() {
 // init is called from the App Engine runtime to initialize the app.
 func init() {
         cacheGeoJSON()
-        http.HandleFunc("/data/wifi-hotspots", wifiHotspotHandler)
+        loadHotspots()
+        http.HandleFunc("/data/wifi-hotspots", hotspotHandler)
 }
 
-func wifiHotspotHandler(w http.ResponseWriter, r *http.Request) {
-        w.Header().Set("Content-type", "application/json")
-        w.Write(GeoJSON["wifi-hotspots.geojson"])        
-}

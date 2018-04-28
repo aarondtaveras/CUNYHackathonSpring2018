@@ -248,7 +248,7 @@ const map_style = [
 
 function initMap() {
   const map = new google.maps.Map(document.querySelector('#map'), {
-    zoom: 11,
+    zoom: 12,
     center: {
       // New York City
       lat: 40.7305,
@@ -257,8 +257,23 @@ function initMap() {
     styles: map_style
   });
   
-  const infowindow = new google.maps.InfoWindow();
-
+  const infoWindow = new google.maps.InfoWindow();
+  let hotspotDataFeatures = [];
   map.data.loadGeoJson('/data/wifi-hotspots');
   
+  google.maps.event.addListener(map, 'idle', () => {
+    const sw = map.getBounds().getSouthWest();
+    const ne = map.getBounds().getNorthEast();
+    map.data.loadGeoJson(
+      `/data/wifi-hotspots?viewport=${sw.lat()},${sw.lng()}|${ne.lat()},${ne.lng()}`,
+      null,
+      features => {
+        hotspotDataFeatures.forEach(dataFeature => {
+          map.data.remove(dataFeature);
+        });
+        hotspotDataFeatures = features;
+      }
+    );
+  });
 }
+
