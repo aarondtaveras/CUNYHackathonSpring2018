@@ -9,11 +9,12 @@ body{
 }
 
 .container {
-  width: 900px;
+  width: 200%;
   position: relative;
   height: 400px;
   overflow: hidden;
   margin: 0 auto;
+  z-index: -1;
 }
 
 /* Clouds */
@@ -237,20 +238,19 @@ h2{
 
 .description{
   float: left;
-  margin-left: 10%;
+  margin-left: 7%;
   margin-top: 10%;
+  position: absolute;
 }
 
 #map{
   height: 100%;
-  position: absolute;
   margin-left: auto;
   margin-right: auto;
-  top: 0;
 }
 
-.about{
-
+.creators{
+  background-color: #b1b1cd;
 }
 
 .flex-container , .fax-container{
@@ -260,6 +260,9 @@ h2{
   justify-content: center;
 }
 
+.creators{
+  bottom:5%;
+}
 
 .pic{
   height: 200px;
