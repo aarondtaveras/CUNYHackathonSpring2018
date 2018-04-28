@@ -10,3 +10,5 @@ handlers:
   upload: static/.*\.(js|html|css)$
 - url: /.*
   script: _go_app
+  
+  
